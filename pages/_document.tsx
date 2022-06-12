@@ -4,8 +4,8 @@ import Document, {
   Head,
   Main,
   NextScript,
-} from "next/document";
-import { ServerStyleSheet } from "styled-components";
+} from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -36,6 +36,11 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" key="charset" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="robots" content="follow, index" />
+          <link
+            href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
+            rel="stylesheet"
+            type="text/css"
+          />
         </Head>
         <body>
           <Main />

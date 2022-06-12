@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Layout, Button } from "@/components/common";
+import { Layout, Button } from '@/components/common';
 
 export default function HomePage() {
   return (
@@ -32,6 +32,11 @@ const Logo = styled.img`
 
   width: 50rem;
   height: 33.6rem;
+
+  transition: all 0.5s;
+  &: hover {
+    opacity: 0.5;
+  }
 `;
 
 const Title = styled.h1`

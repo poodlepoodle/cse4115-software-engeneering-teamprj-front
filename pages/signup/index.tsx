@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
-import styled from "styled-components";
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
 
-import { Layout, Button, Input } from "@/components/common";
+import { Layout, Button, Input } from '@/components/common';
 
-import { words as constWords } from "@/constants";
-import { AuthService } from "@/services";
+import { words as constWords } from '@/constants';
+import { AuthService } from '@/services';
 
 function PasswordPhase({ onSubmit }: { onSubmit: (password: string) => void }) {
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const create = () => {
     if (!password || !confirmPassword || password !== confirmPassword) {
-      alert("올바르게 입력해주세요");
+      alert('올바르게 입력해주세요');
       return;
     }
 
@@ -22,7 +22,8 @@ function PasswordPhase({ onSubmit }: { onSubmit: (password: string) => void }) {
 
   return (
     <Wrapper>
-      <Title style={{ marginBottom: "5.6rem" }}>비밀번호 만들기</Title>
+      <OctoImgSmall src="/images/octo/new_key.png" />
+      <Title style={{ marginBottom: '5.6rem' }}>비밀번호 만들기</Title>
       <StyledInput
         type="password"
         label="새 비밀번호"
@@ -62,25 +63,25 @@ function ShowRecoveryPhrasePhase({
           <WordCard key={word}>{word}</WordCard>
         ))}
       </WordsWrapper>
-      <Button onClick={() => onComplete(words.join(" "))} width={360}>
+      <Button onClick={() => onComplete(words.join(' '))} width={360}>
         완료
       </Button>
     </>
   );
 }
 
-const phases = ["password", "show"] as const;
+const phases = ['password', 'show'] as const;
 type Phase = typeof phases[number];
 export default function SignupPage() {
-  const [phase, setPhase] = useState<Phase>("password");
-  const [password, setPassword] = useState("");
+  const [phase, setPhase] = useState<Phase>('password');
+  const [password, setPassword] = useState('');
 
   const router = useRouter();
 
   const signUp = (phrase: string) => {
     try {
       AuthService.signUp(password, phrase);
-      router.replace("/signup/complete");
+      router.replace('/signup/complete');
     } catch (e) {
       alert(e);
     }
@@ -88,15 +89,15 @@ export default function SignupPage() {
 
   return (
     <Layout>
-      {phase === "password" && (
+      {phase === 'password' && (
         <PasswordPhase
           onSubmit={(input) => {
             setPassword(input);
-            setPhase("show");
+            setPhase('show');
           }}
         />
       )}
-      {phase === "show" && <ShowRecoveryPhrasePhase onComplete={signUp} />}
+      {phase === 'show' && <ShowRecoveryPhrasePhase onComplete={signUp} />}
     </Layout>
   );
 }
@@ -114,6 +115,23 @@ const OctoImg = styled.img`
   top: -8.8rem;
 
   width: 30rem;
+
+  transition: all 0.5s;
+  &: hover {
+    opacity: 0.5;
+  }
+`;
+
+const OctoImgSmall = styled.img`
+  position: absolute;
+  top: -8.8rem;
+
+  width: 18rem;
+
+  transition: all 0.5s;
+  &: hover {
+    opacity: 0.5;
+  }
 `;
 
 const Title = styled.h1`

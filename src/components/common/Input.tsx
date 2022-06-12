@@ -1,7 +1,7 @@
-import { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
-import styled from "styled-components";
+import { ChangeEventHandler, HTMLInputTypeAttribute } from 'react';
+import styled from 'styled-components';
 
-import { rem } from "@/helpers";
+import { rem } from '@/helpers';
 
 type InputProps = {
   label?: string;
@@ -32,7 +32,7 @@ const Wrapper = styled.div<{ width?: number | string }>`
   flex-direction: column;
   align-items: flex-start;
 
-  width: ${(props) => rem(props.width) ?? "100%"};
+  width: ${(props) => rem(props.width) ?? '100%'};
   height: fit-content;
 `;
 
@@ -41,7 +41,8 @@ const StyledInput = styled.input`
   height: 4.8rem;
   padding-left: 1.6rem;
 
-  font-size: 2.4rem;
+  /* font-size: 2.4rem; */
+  font-size: 1.4rem;
 
   border: 0.1rem solid ${({ theme }) => theme.colors.gray5};
   border-radius: 0.4rem;

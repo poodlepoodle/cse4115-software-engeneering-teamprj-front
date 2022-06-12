@@ -1,23 +1,23 @@
-import { useState } from "react";
-import styled from "styled-components";
-import { message } from "antd";
+import { useState } from 'react';
+import styled from 'styled-components';
+import { message } from 'antd';
 
-import { Button, Layout, Tab } from "@/components/common";
+import { Button, Layout, Tab } from '@/components/common';
 import {
   SendModal,
   WalletCard,
   TransactionCard,
   AddTokenModal,
-} from "@/components/main";
-import { CopyIcon } from "@/icons";
+} from '@/components/main';
+import { CopyIcon } from '@/icons';
 
-import { useWeb3Mock } from "@/hooks";
+import { useWeb3Mock } from '@/hooks';
 
 const ETH_USD_EXCHANGE_RATE = 1813.09;
 
-type ModalType = "send" | "addToken";
+type ModalType = 'send' | 'addToken';
 export default function MainPage() {
-  const [tab, setTab] = useState<"asset" | "activity">("asset");
+  const [tab, setTab] = useState<'asset' | 'activity'>('asset');
 
   const [modalState, setModalState] = useState<Record<ModalType, boolean>>({
     send: false,
@@ -33,27 +33,28 @@ export default function MainPage() {
   const wallet = wallets[selected];
 
   const copyAddress = () => {
-    message.success("주소가 클립보드에 복사되었어요 😉");
+    message.success('주소가 클립보드에 복사되었어요 😉');
   };
 
   return (
     <>
-      <Layout height={540} style={{ padding: "3.2rem 0 0 0" }}>
+      <Layout height={540} style={{ padding: '3.2rem 0 0 0' }}>
         <Title>내 지갑</Title>
         <AddressRow onClick={copyAddress}>
-          <AddressText>{wallet.address.slice(0, 10) + "..."}</AddressText>
+          <AddressText>{wallet.address.slice(0, 10) + '...'}</AddressText>
           <CopyIcon />
         </AddressRow>
         <Avatar src="/images/ethereum.png" />
-        <Balance>{wallet.balance ?? "-"} ETH</Balance>
+        <Balance>{wallet.balance ?? '-'} ETH</Balance>
+        <EthImg src="/images/eth.png" />
         <UsdBalance>
           ${(wallet.balance * ETH_USD_EXCHANGE_RATE).toFixed(2)} USD
         </UsdBalance>
         <ButtonRow>
-          <Button size="small" onClick={toggleModal("send")}>
+          <Button size="small" onClick={toggleModal('send')}>
             보내기
           </Button>
-          <Button size="small" onClick={toggleModal("addToken")}>
+          <Button size="small" onClick={toggleModal('addToken')}>
             토큰 가져오기
           </Button>
         </ButtonRow>
@@ -61,16 +62,16 @@ export default function MainPage() {
           value={tab}
           onChange={setTab}
           items={[
-            { label: "자산", value: "asset" },
-            { label: "활동", value: "activity" },
+            { label: '자산', value: 'asset' },
+            { label: '활동', value: 'activity' },
           ]}
         />
         <List>
-          {tab === "asset" &&
+          {tab === 'asset' &&
             wallets.map((v) => (
               <WalletCard key={v.type} name={v.name} balance={v.balance} />
             ))}
-          {tab === "activity" &&
+          {tab === 'activity' &&
             wallet.transactions.map((v) => (
               <TransactionCard key={v.type} {...v} />
             ))}
@@ -78,14 +79,14 @@ export default function MainPage() {
       </Layout>
       <SendModal
         visible={modalState.send}
-        onCancel={toggleModal("send")}
+        onCancel={toggleModal('send')}
         onComplete={({ to, type, amount }) => {
           send(to, type, amount);
         }}
       />
       <AddTokenModal
         visible={modalState.addToken}
-        onCancel={toggleModal("addToken")}
+        onCancel={toggleModal('addToken')}
         onComplete={({ address, symbol, decimal }) => {
           add(symbol);
         }}
@@ -136,6 +137,19 @@ const Avatar = styled.img`
   box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.08);
 
   user-select: none;
+`;
+
+const EthImg = styled.img`
+  position: absolute;
+  top: 18rem;
+  right: 15rem;
+
+  width: 5.5rem;
+
+  transition: all 0.5s;
+  &: hover {
+    opacity: 0.5;
+  }
 `;
 
 const Balance = styled.p`

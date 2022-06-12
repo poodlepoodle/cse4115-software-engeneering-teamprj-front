@@ -1,9 +1,9 @@
-import type { AppProps } from "next/app";
-import Head from "next/head";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import "antd/dist/antd.css";
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import 'antd/dist/antd.css';
 
-import { colors } from "@/constants";
+import { colors } from '@/constants';
 
 const GlobalStyle = createGlobalStyle`
   * {

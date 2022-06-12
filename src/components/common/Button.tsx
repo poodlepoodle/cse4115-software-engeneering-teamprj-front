@@ -1,10 +1,10 @@
-import { CSSProperties, ReactNode } from "react";
-import Link from "next/link";
-import styled from "styled-components";
+import { CSSProperties, ReactNode } from 'react';
+import Link from 'next/link';
+import styled from 'styled-components';
 
-import { rem } from "@/helpers";
+import { rem } from '@/helpers';
 
-const buttonSizes = ["small", "medium"] as const;
+const buttonSizes = ['small', 'medium'] as const;
 type ButtonSize = typeof buttonSizes[number];
 
 type ButtonProps = {
@@ -36,7 +36,7 @@ const Wrapper = styled.a<{ width?: number | string; size?: ButtonSize }>`
   align-items: center;
   justify-content: center;
 
-  width: ${(props) => rem(props.width) ?? "100%"};
+  width: ${(props) => rem(props.width) ?? '100%'};
   height: 6.4rem;
   border-radius: 0.8rem;
 
@@ -55,7 +55,7 @@ const Wrapper = styled.a<{ width?: number | string; size?: ButtonSize }>`
   }
 
   ${(props) =>
-    props.size === "small" &&
+    props.size === 'small' &&
     `
     width: fit-content;
     height: fit-content;

@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Layout, Button } from "@/components/common";
+import { Layout, Button } from '@/components/common';
 
 export default function SignupCompletePage() {
   return (
@@ -30,6 +30,11 @@ const OctoImg = styled.img`
   top: -14.2rem;
 
   width: 45.2rem;
+
+  transition: all 0.5s;
+  &: hover {
+    opacity: 0.5;
+  }
 `;
 
 const Title = styled.h1`
